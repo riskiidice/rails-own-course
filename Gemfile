@@ -15,6 +15,7 @@ gem 'bootstrap-datepicker-rails'
 gem 'aws-sdk'
 gem 'will_paginate', '3.1.5'
 gem 'bootstrap-will_paginate', '0.0.10'
+gem 'jquery-rails'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
