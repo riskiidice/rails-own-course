@@ -17,7 +17,7 @@
       <tr>
         <td><%= link_to student.id, student_path(student) %></td>
         <td><%= student.major %></td>
-        <td><%= student._class %></td>
+        <td><%= student.s_class %></td>
         <td><%=l student.created_at %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
