@@ -37,7 +37,11 @@
               <div class="form-group">
                 <input type="password" placeholder="Password" class="form-control">
               </div>
+            <% if !current_user && !current_user.admin? %>
               <button type="submit" class="btn btn-success">Sign in</button>
+            <% else %>
+              <%= link_to 'Log out',destroy_user_session_path, class: "btn btn-danger", method: :delete %>
+            <% end %>
             </form>
           </div><!--/.navbar-collapse -->
         </div>

@@ -1,4 +1,26 @@
+body {
+  margin: 0px !important;
+}
 .navbar {
   border-radius: 0px;
   margin-bottom: 0px;
+  background-color: #5365a5;
+  border-color: #586486;
+  border-bottom: 4px solid #a7acd0;
+}
+a.btn.btn-default:visited {
+  color: #666 !important;
+}
+a.btn.btn-primary:visited {
+  color: #fff !important;
+}
+
+a.btn.btn-danger:visited {
+  color: #fff !important;
+}
+.navbar-inverse .navbar-toggle {
+    border-color: rgba(51, 51, 51, 0);
+}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
+    background-color: rgba(51, 51, 51, 0);
 }
