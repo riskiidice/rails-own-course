@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021175822) do
+ActiveRecord::Schema.define(version: 20171021183610) do
 
   create_table "carts", force: :cascade do |t|
     t.string "uuid"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20171021175822) do
 
   create_table "students", force: :cascade do |t|
     t.string "major"
-    t.string "class"
+    t.string "_class"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
