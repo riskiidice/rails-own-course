@@ -11,8 +11,6 @@
   <dd><%= @news.description %></dd>
   <dt><strong><%= model_class.human_attribute_name(:highlight) %>:</strong></dt>
   <dd><%= @news.highlight %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:timestamps) %>:</strong></dt>
-  <dd><%= @news.timestamps %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
