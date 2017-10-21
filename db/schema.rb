@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021193430) do
+ActiveRecord::Schema.define(version: 20171021213130) do
 
   create_table "carts", force: :cascade do |t|
     t.string "uuid"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 20171021193430) do
     t.string "s_class"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "students_id"
+    t.index ["students_id"], name: "index_subjects_on_students_id"
   end
 
   create_table "users", force: :cascade do |t|
