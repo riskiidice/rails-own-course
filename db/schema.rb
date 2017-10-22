@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171021213130) do
+ActiveRecord::Schema.define(version: 20171022064548) do
 
   create_table "carts", force: :cascade do |t|
     t.string "uuid"
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20171021213130) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "students_id"
-    t.index ["students_id"], name: "index_subjects_on_students_id"
+    t.integer "student_id"
+    t.index ["student_id"], name: "index_subjects_on_student_id"
   end
 
   create_table "users", force: :cascade do |t|

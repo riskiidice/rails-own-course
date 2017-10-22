@@ -5,7 +5,6 @@ class SubjectsController < ApplicationController
   # GET /subjects.json
   def index
     @subjects = Subject.all
-    debugger
   end
 
   # GET /subjects/1
@@ -69,6 +68,6 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.require(:subject).permit(:title, :description, :price, :students_id)
+      params.require(:subject).permit(:title, :description, :price, :student_id)
     end
 end

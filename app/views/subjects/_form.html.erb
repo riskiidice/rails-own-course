@@ -39,9 +39,9 @@
   <div class="form-group">
     <%= f.label :students_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.select :students_id, options_for_select(Student.all.map{|s|[s.major+'- ปี '+s.s_class, s.id]}),:class => 'form-control' %>
+      <%= f.select :student_id, options_for_select(Student.all.map{|s|[s.major+'- ปี '+s.s_class, s.id]}),:class => 'form-control' %>
     </div>
-    <%=f.error_span(:students_id) %>
+    <%=f.error_span(:student_id) %>
   </div>
 
   <div class="form-group">
