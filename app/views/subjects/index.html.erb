@@ -39,11 +39,48 @@
         </td>
         <% end %>
       </tr>
-    <% end %>
   </tbody>
 </table>
 <% if current_user and current_user.admin? %>
   <%= link_to t('.new', :default => t("helpers.links.new")),
               new_subject_path,
               :class => 'btn btn-primary' %>
+<% end %>
+<div class="container">
+    <div id="products" class="row list-group">
+        <div class="item  col-xs-4 col-lg-4">
+            <div class="thumbnail">
+                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">
+                        <%= subject.title %></h4>
+                    <p class="group inner list-group-item-text">
+                        Product description... Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                        sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6">
+                            <p class="lead">
+                                <span>&#3647;</span><%=subject.price%></p>
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                          <% if current_user and current_user.admin? %>
+
+                            <%= link_to t('.show', :default => t("helpers.links.show")),
+                                        subject_path(subject), :class => 'btn btn-default btn-xs' %>
+                            <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                                        edit_subject_path(subject), :class => 'btn btn-default btn-xs' %>
+                            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                                        subject_path(subject),
+                                        :method => :delete,
+                                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                                        :class => 'btn btn-xs btn-danger' %>
+                          <% else%>
+                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                          <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  </div>
 <% end %>
