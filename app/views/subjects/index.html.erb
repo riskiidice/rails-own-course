@@ -1,56 +1,18 @@
 <%- model_class = Subject -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <% if current_user and current_user.admin? %>
+    <%= link_to t('.new', :default => t("helpers.links.new")),
+                new_subject_path,
+                :class => 'btn btn-primary' %>
+  <% end %>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:title) %></th>
-      <th><%= model_class.human_attribute_name(:description) %></th>
-      <th><%= model_class.human_attribute_name(:price) %></th>
-      <th><%= model_class.human_attribute_name(:student_id) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
-      <% if current_user and current_user.admin? %>
-        <th><%=t '.actions', :default => t("helpers.actions") %></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @subjects.each do |subject| %>
-      <tr>
-        <td><%= link_to subject.id, subject_path(subject) %></td>
-        <td><%= subject.title %></td>
-        <td><%= subject.description %></td>
-        <td><%= subject.price %></td>
-        <td><%= subject.student_id %></td>
-        <td><%=l subject.created_at %></td>
-        <% if current_user and current_user.admin? %>
-        <td>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      subject_path(subject), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_subject_path(subject), :class => 'btn btn-default btn-xs' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      subject_path(subject),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
-        <% end %>
-      </tr>
-  </tbody>
-</table>
-<% if current_user and current_user.admin? %>
-  <%= link_to t('.new', :default => t("helpers.links.new")),
-              new_subject_path,
-              :class => 'btn btn-primary' %>
-<% end %>
+
 <div class="container">
-    <div id="products" class="row list-group">
-        <div class="item  col-xs-4 col-lg-4">
+  <div id="products" class="row list-group">
+<% @subjects.each do |subject| %>
+        <div class="item  col-xs-12 col-lg-4">
             <div class="thumbnail">
-                <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
                 <div class="caption">
                     <h4 class="group inner list-group-item-heading">
                         <%= subject.title %></h4>
@@ -75,12 +37,19 @@
                                         :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                                         :class => 'btn btn-xs btn-danger' %>
                           <% else%>
-                            <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                          <%= form_tag addcart_path, remote: true, method: :get, id: 'cart-lookup-form' do %>
+                             <%= hidden_field_tag 'subject_id', subject.id %>
+                              <%= button_tag(type: :submit, class: 'btn btn-lg btn-success') do %>
+                              <i class='fa fa-cart'></i>Add to cart
+                          <% end %>
+
+                              <% end %>
                           <% end %>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-  </div>
 <% end %>
+  </div>
+</div>
