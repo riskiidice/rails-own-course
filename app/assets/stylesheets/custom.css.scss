@@ -46,6 +46,26 @@ a.btn.btn-danger:visited {
       background-color: brown;
     }
 }
+.minicart:hover {
+  cursor: pointer;
+}
+.minicart a:hover {
+  background-color: none;
+}
 #spinner {
   background-image: asset-url('ajax-loader.gif');
+}
+a#con_shop {
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+a.glyphicon.glyphicon-trash{
+  color:#428bca;
+  position: relative;
+  top: 7px;
+}
+
+a.glyphicon.glyphicon-trash:hover{
+  background-color: #fff !important;
 }

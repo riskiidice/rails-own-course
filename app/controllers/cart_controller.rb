@@ -1,30 +1,52 @@
 class CartController < ApplicationController
-  before_action :set_carts, only: [:add_to_cart]
+  before_action :set_cart, only: [:add_to_cart, :checkout, :remove_from_cart]
   skip_before_action :authenticate_user!
 
   def add_to_cart
-    if params[:carts]
-      # @cart = Cart.find_by_ticker(params[:carts])
-      # @cart ||= Cart.new_from_lookup(params[:carts])
-    else
-      if @cart
-        render json: @cart
-      else
-        render json: {'cart_id': SecureRandom.uuid}
-      end
+    if params[:subject_id]
+      save_to_session
+      redirect_to subjects_path
     end
   end
 
+  def clear_cart
+    reset_session
+    redirect_to subjects_path
+  end
+
+  def checkout
+    render 'checkout'
+  end
+
+  def remove_from_cart
+    session[:cart].delete(params[:format])
+    redirect_to checkout_path
+  end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_carts
-      if params[:uuid]
-        @cart = Cart.find(params[:uuid])
+    def set_cart
+      if !session[:cart]
+        session[:cart] = []
+      else
+        subject = []
+        @cart = session[:cart]
+        @cart.each do |c|
+          subject.push(Subject.find(c))
+        end
+        @cart = subject.uniq
+        get_total
       end
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def carts_params
-      params.require(:carts).permit(:uuid, :orders)
+    def save_to_session
+      session[:cart] = session[:cart].push(params[:subject_id])
+    end
+
+    def get_total
+      if @cart.count == 3
+        @total = 4200
+      else
+        @total = @cart.inject(0){|sum,x| sum + x.price}
+      end
     end
 end

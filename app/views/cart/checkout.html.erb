@@ -1,0 +1,62 @@
+<div class="row" style="margin-top:50px;">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <div class="panel-title">
+          <div class="row">
+            <div class="col-xs-6">
+              <h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+            </div>
+            <div class="col-xs-6">
+              <%= link_to "Continue shopping", subjects_path, class: "btn btn-primary btn-sm btn-block glyphicon glyphicon-share-alt",id: "con_shop"%>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body"> <!-- Product -->
+      <% @cart.each do |p|  %>
+        <div class="row">
+          <div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
+          </div>
+          <div class="col-xs-4">
+            <h4 class="product-name"><strong><%= p.title %></strong></h4><h4><small>Product description</small></h4>
+          </div>
+          <div class="col-xs-6">
+            <div class="col-xs-6 col-xs-offset-4 text-right">
+              <h6><strong><%= p.price%> </strong></h6>
+            </div>
+            <div class="col-xs-2">
+              <%=link_to "", removecart_path(p), class: "glyphicon glyphicon-trash" %>
+            </div>
+          </div>
+        </div><!-- end of products -->
+        <hr>
+        <% end %>
+        <div class="row">
+          <div class="text-center">
+            <div class="col-xs-9">
+              <h6 class="text-right">Added items?</h6>
+            </div>
+            <div class="col-xs-3">
+              <button type="button" class="btn btn-default btn-sm btn-block">
+                Update cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <div class="row text-center">
+          <div class="col-xs-9">
+            <h4 class="text-right">Total <strong>	&#3647; <%= @total%></strong></h4>
+          </div>
+          <div class="col-xs-3">
+            <button type="button" class="btn btn-success btn-block">
+              Checkout
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

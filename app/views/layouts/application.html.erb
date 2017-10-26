@@ -39,7 +39,15 @@
                 <input type="password" placeholder="Password" class="form-control">
               </div>
               <button type="submit" class="btn btn-success">Sign in</button>
-              <div class="minicart"><span class="cart-item badge"></span></div>
+              <!-- <button type="button" class="btn btn-default" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Vivamus
+              sagittis lacus vel augue laoreet rutrum faucibus.">
+                Popover on bottom
+              </button> -->
+              <a href="/checkout">
+              <div class="minicart">
+              <span class="cart-item badge"><%= session[:cart].uniq.count if session[:cart] %></span>
+              </div>
+              </a>
             <% else %>
               <%= link_to 'Log out',destroy_user_session_path, class: "btn btn-danger", method: :delete %>
             <% end %>
